@@ -1,14 +1,28 @@
-//on:
-  push:
-    # Sequence of patterns matched against refs/heads
-    branches:    
-      - main
-      - 'mona/octocat'
-      - 'releases/**'
-    # Sequence of patterns matched against refs/tags
-    tags:        
-      - v2
-      - v1.*
+//
+on: issue_comment
+
+jobs:
+  pr_commented:
+    # This job only runs for pull request comments
+    name: PR comment
+    if: ${{ github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo A comment on PR $NUMBER
+        env:
+          NUMBER: ${{ github.event.issue.number }}
+
+  issue_commented:
+    # This job only runs for issue comments
+    name: Issue comment
+    if: ${{ !github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo A comment on issue $NUMBER
+        env:
+          NUMBER: ${{ github.event.issue.number }}
 // @author LazyBear 
 // List of all my indicators: 
 // https://docs.google.com/document/d/15AGCufJZ8CIUvwFJ9W-IKns88gkWOKBCvByMEvm5MLo/edit?usp=sharing
