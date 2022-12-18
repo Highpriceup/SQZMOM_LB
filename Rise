@@ -1,4 +1,14 @@
-//
+//on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      - main
+      - 'mona/octocat'
+      - 'releases/**'
+    # Sequence of patterns matched against refs/tags
+    tags:        
+      - v2
+      - v1.*
 // @author LazyBear 
 // List of all my indicators: 
 // https://docs.google.com/document/d/15AGCufJZ8CIUvwFJ9W-IKns88gkWOKBCvByMEvm5MLo/edit?usp=sharing
